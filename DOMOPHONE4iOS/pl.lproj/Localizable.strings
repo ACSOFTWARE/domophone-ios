@@ -1,0 +1,17 @@
+"Connected" = "Połączony";
+"Connecting..." = "Łączenie...";
+"Invalid authorization key" = "Błędny klucz autoryzacji";
+"No connection" = "Brak połączenia";
+"Compatibility Error" = "Błąd komplatybilnoci";
+"Ready" = "Gotowy";
+"Opening..." = "Otwieram...";
+"Waiting..." = "Oczekiwanie...";
+"Version" = "Wersja 1.3.4";
+"st." = "ul.";
+"Poland" = "Polska";
+"CALLING..." = "DZWONI...";
+"Gateway opening" = "Otwarcie furtki";
+"Opening / closing the gate" = "Otwarcie / zamknięcie bramy";
+"Audio/video connection started" = "Połączenie audio/video rozpoczęte";
+"Audio/video connection finished" = "Połączenie audio/video zakończone";
+"Locked by %@" = "Zablokowany przez %@";
