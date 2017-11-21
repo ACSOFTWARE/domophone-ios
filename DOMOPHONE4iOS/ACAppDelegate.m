@@ -108,18 +108,14 @@
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
-    #ifdef CONSOLE_DEBUG
     NSLog(@"Did register for remote notifications: %@", deviceToken);
-    #endif
     self.viewController.push_token = deviceToken;
     [self.viewController PushRegister];
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
-    #ifdef CONSOLE_DEBUG
     NSLog(@"Fail to register for remote notifications: %@", error);
-    #endif
     self.viewController.push_token = nil;
     [self.viewController PushRegister];
 }

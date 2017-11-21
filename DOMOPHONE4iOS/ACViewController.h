@@ -63,6 +63,7 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *labelStreet;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *labelCountry;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *labelVersion;
+@property (weak, nonatomic) IBOutlet UILabel *labelVideoInit;
 @property (readonly, nonatomic) NSDate *lastSysState;
 @property (nonatomic) NSData *push_token;
 @end

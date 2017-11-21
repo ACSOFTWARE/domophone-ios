@@ -26,9 +26,8 @@
 -(void) resetRetryCounter;
 -(void) speakerOn;
 -(void) setMicGain:(float) gain;
-
+-(void) terminateCall;
 @property BOOL AudioEnabled;
-@property BOOL VideoEnabled;
 @property (readonly) BOOL ActiveCall;
 @end
 

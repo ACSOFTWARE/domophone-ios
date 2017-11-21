@@ -999,7 +999,6 @@ ACViewController *MainVC = nil;
 
 - (IBAction)infoTouch:(id)sender {
 
-
     // Może być wywołane z touchesBegan
     if (!self.btnInfo.enabled) return;
     //---------------------------------
@@ -1071,19 +1070,17 @@ ACViewController *MainVC = nil;
     if ( SipServer
          && SipServer.length > 0 ) {
         
-        #ifdef CONSOLE_DEBUG
         NSLog(@"SipServer=%@", SipServer);
-        #endif
         
         [self startSipTimeoutTimer];
         [self linInit];
         if ( timer.userInfo == self.btnAudio ) {
             Linphone.AudioEnabled = YES;
             if ( Linphone.ActiveCall ) {
-                [_Connection SipConnectWithVideo:Linphone.VideoEnabled andSpeakerOn:Linphone.AudioEnabled];
+                [_Connection SipConnectWithVideo:YES andSpeakerOn:Linphone.AudioEnabled];
             }
         }
-        Linphone.VideoEnabled = YES;
+
         [Linphone resetRetryCounter];
         [Linphone registerWithIdent:[self getSipIdent] host:SipServer];
     }
@@ -1109,19 +1106,30 @@ ACViewController *MainVC = nil;
     _lastAudioVideoTouch = [NSDate date];
        
     if ( ( sender == self.btnVideo
-            && ( Linphone.VideoEnabled == NO
-                 || self.videoView.hidden ) )
+            && self.videoView.hidden )
         || ( sender == self.btnAudio
             &&  Linphone.AudioEnabled == NO )) {
             
         if ( _Connection ) {
             
-            [self setConnectedStatusWithActInd:self.videoView.hidden];
+            BOOL ActiveCall = Linphone && [Linphone ActiveCall];
+            
+            [self setConnectedStatusWithActInd:!ActiveCall];
+            
             if ( sender == self.btnAudio ) {
                  [self changeBtnImage:self.btnAudio imageName:@"mic_on.png"];
+                
                 [self setMicrophoneGain];
                 [_Connection SetSpeakerOn:YES];
+                
+                if ( ActiveCall ) {
+                    Linphone.AudioEnabled = YES;
+                    return;
+                };
+                
+                
             }
+            
             [self changeBtnImage:self.btnVideo imageName:@"video_on.png"];
             if ( Diff > 3 ) {
                 Diff = 0.25;
@@ -1133,9 +1141,7 @@ ACViewController *MainVC = nil;
             _startVideoTimer1 = [NSTimer scheduledTimerWithTimeInterval:Diff target:self selector:@selector(startAudioVideoConnection:) userInfo:sender repeats:NO];
         }
     } else {
-        #ifdef CONSOLE_DEBUG
         NSLog(@"audioVideoTouch:sipDisconnect");
-        #endif
         [self sipDisconnect];
     }
     
@@ -1238,7 +1244,7 @@ ACViewController *MainVC = nil;
         && Linphone
         && ![Linphone ActiveCall] ) {
             [self setConnectedStatusWithActInd:YES];
-            [_Connection SipConnectWithVideo:Linphone.VideoEnabled andSpeakerOn:Linphone.AudioEnabled];
+            [_Connection SipConnectWithVideo:YES andSpeakerOn:Linphone.AudioEnabled];
     };
 }
 
@@ -1250,7 +1256,6 @@ ACViewController *MainVC = nil;
     
     if ( Linphone ) {
         [Linphone clean];
-        Linphone.VideoEnabled = NO;
         Linphone.AudioEnabled = NO;
     };
     
@@ -1277,19 +1282,28 @@ ACViewController *MainVC = nil;
     [self sipVideoStopped];
     
     if ( sa && _Connection ) {
-        #ifdef CONSOLE_DEBUG
         NSLog(@"sipDisconnectWithouthTerminate:SipDisconnect, wt=%i, sa=%i", wt, sa);
-        #endif
         [_Connection SipDisconnect];
     } else if ( wt == NO ) {
         [self sipTerminate];
     };
+    
+    if ( Linphone ) {
+        [Linphone terminateCall];
+    }
+    
 }
 
 -(void)sipCallStarted {
     
+    if ( !self.videoView.hidden ) {
+        return;
+    }
+    
+    [self videoWindowVisible:YES];
+    
     [self stopSipTimeoutTimer];
-    if ( !Linphone || !Linphone.VideoEnabled || !self.videoView.hidden ) {
+    if ( !Linphone || !self.videoView.hidden ) {
         [self setConnectedStatusWithActInd:NO];
     };
     
@@ -1305,7 +1319,7 @@ ACViewController *MainVC = nil;
 -(void)sipVideoStarted {
     
     [self videoWindowVisible:YES];
-    
+    /*
     if ( self.currentStatus == STATUS_WAITING
         || [self currentStatus] == STATUS_CONNECTED) {
         [self setConnectedStatusWithActInd:NO];
@@ -1313,6 +1327,7 @@ ACViewController *MainVC = nil;
     [MainVC updateLogoAndButtonsPosition];
     [Linphone speakerOn];
     [self lpDelayedSpeakerOn];
+    */
     
 }
 
@@ -1345,6 +1360,18 @@ ACViewController *MainVC = nil;
 
 -(void)videoWindowVisible:(BOOL)visible {
 
+    if ( self.videoView.hidden == YES ) {
+        [self.videoFrame setBackgroundColor:[UIColor lightGrayColor]];
+        self.labelVideoInit.hidden = NO;
+    } else {
+        [self.videoFrame setBackgroundColor:[UIColor blackColor]];
+        self.labelVideoInit.hidden = YES;
+    }
+    
+    if ( visible != self.videoView.hidden ) {
+        return;
+    }
+    
     if ( visible ) {
         
         /*
@@ -1391,11 +1418,7 @@ ACViewController *MainVC = nil;
             
         }
 
-        
-
-        
         self.videoView.frame = f;
-        
         self.videoView.hidden = NO;
     } else {
         self.btnInfo.hidden = NO;

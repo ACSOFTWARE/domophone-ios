@@ -17,7 +17,6 @@
 #import "ACViewController.h"
 #include "dconnection.h"
 
-//#undef CONSOLE_DEBUG
 
 #define RECV_BUFF_SIZE 2024
 
@@ -156,7 +155,7 @@
         _host = @"";
         _tcp_port = 465;
         
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: [NSString stringWithFormat:@"http://www.acsoftware.pl/support/domophone.php"]]];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: [NSString stringWithFormat:@"https://www.acsoftware.pl/support/domophone.php"]]];
 
         [request setHTTPMethod: @"POST"];
         [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
@@ -241,19 +240,15 @@
         
         if ( aStream == _inputStream ) {
             _recv_datasize = [_inputStream read:(uint8_t*)_recv_buffer maxLength:RECV_BUFF_SIZE];
-            #ifdef CONSOLE_DEBUG
             //if ( _is_proxy )
             NSLog(@"READ FROM STREAM %lu BYTES", _recv_datasize);
-            #endif
         };
 
     } else if ( eventCode == NSStreamEventErrorOccurred
                || eventCode == NSStreamEventEndEncountered ) {
         
-        #ifdef CONSOLE_DEBUG
         //if ( _is_proxy )
         NSLog(@"HANDLE_EVENT_ERROR: %lu, %@ [PROXY=%i]", (unsigned long)eventCode, [[aStream streamError] localizedDescription], _is_proxy );
-        #endif
         
         [_inputStream close];
         [_outputStream close];
@@ -263,10 +258,8 @@
         dconnection_setdisconnected(dc, 1);
         
     } else {
-        #ifdef CONSOLE_DEBUG
         //if ( _is_proxy )
         NSLog(@"HANDLE_EVENT: %lu, %@ [PROXY=%i]", (unsigned long)eventCode, [[aStream streamError] localizedDescription], _is_proxy );
-        #endif
     }
 
 }
@@ -326,29 +319,23 @@
             
             switch(wr) {
                 case WRESULT_ONCONNECT:
-                    #ifdef CONSOLE_DEBUG
                     //if ( _is_proxy )
                     NSLog(@"WRESULT_ONCONNECT [PROXY=%i]", _is_proxy);
-                    #endif
                     _connected = NO;
                     if ( _onConnect && _eventObject )
                         [_eventObject performSelectorOnMainThread:_onConnect withObject:nil waitUntilDone:NO];
                     break;
                 case WRESULT_ONDISCONNECT:
-                    #ifdef CONSOLE_DEBUG
                     //if ( _is_proxy )
                     NSLog(@"WRESULT_ONDISCONNECT [PROXY=%i]", _is_proxy);
-                    #endif
                     _connected = NO;
                     [self disconnect];
                     if ( _onDisconnect && _eventObject )
                         [_eventObject performSelectorOnMainThread:self.onDisconnect withObject:nil waitUntilDone:NO];
                     break;
                 case WRESULT_ONAUTHORIZE:
-                    #ifdef CONSOLE_DEBUG
                     //if ( _is_proxy )
                     NSLog(@"WRESULT_ONAUTHORIZE [PROXY=%i]", _is_proxy);
-                    #endif
                     _connected = YES;
                     if ( _onAuthorize && _eventObject ) {
                         TConnectionSettings Settings;
@@ -357,10 +344,8 @@
                     }
                     break;
                 case WRESULT_ONUNAUTHORIZE:
-                    #ifdef CONSOLE_DEBUG
                     //if ( _is_proxy )
                     NSLog(@"WRESULT_ONUNAUTHORIZE [PROXY=%i]", _is_proxy);
-                    #endif
                     if ( _onUnauthorize
                          && _eventObject
                          && !_is_proxy )
@@ -382,18 +367,14 @@
                             free(Event.SenderName);
                         };
                         
-                        #ifdef CONSOLE_DEBUG
                         //if ( _is_proxy )
                         NSLog(@"WRESULT_ONEVENT [PROXY=%i DUP=%i]", _is_proxy, dup);
-                        #endif
                         
                     }
                     break;
                 case WRESULT_TRYCONNECT:
-                    #ifdef CONSOLE_DEBUG
                     //if ( _is_proxy )
                     NSLog(@"WRESULT_TRYCONNECT [PROXY=%i]", _is_proxy);
-                    #endif
                     if ( [self tryConnect] ) {
                        dconnection_setconnecting(dc);
                     };
@@ -418,16 +399,10 @@
                     if ( _outputStream ) {
                         int send_buff_size;
                         char *send_buff = dconnection_getsentbuffer(dc, &send_buff_size);
-                        
-                        
-                        #ifdef CONSOLE_DEBUG
                      
                         NSInteger w = [_outputStream write:(unsigned char*)send_buff maxLength:send_buff_size];
                         //if ( _is_proxy )
                         NSLog(@"WRITE TO STREAM %li BYTES / %i [PROXY=%i]", (long)w, send_buff_size, _is_proxy);
-                        #else
-                        [_outputStream write:(unsigned char*)send_buff maxLength:send_buff_size];
-                        #endif
                         
                         free(send_buff);
                     } else {
@@ -436,27 +411,21 @@
                 }
                     break;
                 case WRESULT_RESPONSETIMEOUT:
-                    #ifdef CONSOLE_DEBUG
                     //if ( _is_proxy )
                     NSLog(@"WRESULT_RESPONSETIMEOUT [PROXY=%i]", _is_proxy);
-                    #endif
                     break;
                 case WRESULT_ONRESPONSE:
-                    #ifdef CONSOLE_DEBUG
                     //if ( _is_proxy )
                     NSLog(@"WRESULT_ONRESPONSE [PROXY=%i]", _is_proxy);
                     dconnection_getresponse(dc, &DP);
                     if( DP.Param1 == RESULT_ACTION_UNIQUEID_DUPLICATED ) {
                         NSLog(@"RESULT_ACTION_UNIQUEID_DUPLICATED [PROXY=%i]", _is_proxy);
                     }
-                    #endif
                     
                     break;
                 case WRESULT_ONSYSSTATE:
-                    #ifdef CONSOLE_DEBUG
                     //if ( _is_proxy ) 
                     NSLog(@"WRESULT_ONSYSSTATE [PROXY=%i]", _is_proxy);
-                    #endif
                     
                     if ( _eventObject && _onSysState ) {
                         int state;
@@ -488,9 +457,7 @@
                 case WRESULT_PROXYCONNECT:
                     
                 {
-                    #ifdef CONSOLE_DEBUG
                     NSLog(@"WRESULT_PROXYCONNECT [PROXY=%i]", _is_proxy);
-                    #endif
                     
                     _Proxy = [[ACDomophoneConnection alloc] initWithDcStruct:pconnection_proxyinit(dc)];
                     _Proxy.eventObject = self.eventObject;
@@ -507,16 +474,12 @@
                      
                     break;
                 case WRESULT_PROXYDISCONNECT:
-                    #ifdef CONSOLE_DEBUG
                     if ( _is_proxy )
                     NSLog(@"WRESULT_PROXYDISCONNECT [PROXY=%i]", _is_proxy);
-                    #endif
                     [self proxy_disconnect:NO];
                     break;
                 case WRESULT_DEVICENOTFOUND:
-                    #ifdef CONSOLE_DEBUG
                 	NSLog(@"WRESULT_DEVICENOTFOUND");
-                    #endif
                     break;
                 case WRESULT_VERSIONERROR:
                     if ( _onVersionError && _eventObject )
@@ -530,9 +493,7 @@
                     [_eventObject performSelectorOnMainThread:_onPushRegister withObject:nil waitUntilDone:NO];
                     break;
                 case WRESULT_WAKEUP:
-                    #ifdef CONSOLE_DEBUG
                 	NSLog(@"WRESULT_WAKEUP");
-                    #endif
                     break;
             };
             

@@ -15,7 +15,8 @@
 
 #import "ACLinphone.h"
 #import "ACViewController.h"
-#include "linphonecore.h"
+#include "mediastreamer2/mscommon.h"
+#include "linphone/linphonecore.h"
 
 #define DEFAULT_EXPIRES 600
 
@@ -26,23 +27,11 @@ int __aeabi_idiv(int a, int b) {
 }
 #endif
 
-extern void libmsilbc_init();
-
-#ifdef HAVE_AMR
-extern void libmsamr_init();
-#endif
-
-#ifdef HAVE_X264
-extern void libmsx264_init();
-#endif
-
-#if defined (HAVE_SILK)
-extern void libmssilk_init();
-#endif
-
-#if HAVE_G729
-extern  void libmsbcg729_init();
-#endif
+extern void libmsamr_init(MSFactory *factory);
+extern void libmsx264_init(MSFactory *factory);
+extern void libmsopenh264_init(MSFactory *factory);
+extern void libmssilk_init(MSFactory *factory);
+extern void libmswebrtc_init(MSFactory *factory);
 
 ACLinphone *Linphone = nil;
 
@@ -50,11 +39,11 @@ ACLinphone *Linphone = nil;
     LinphoneCore *lc;
     NSTimer *_iterateTimer;
     BOOL _AudioEnabled;
-    BOOL _VideoEnabled;
     BOOL _RegistrationInProgress;
     int _retryCounter;
     NSString *lastIdent;
     NSString *lastHost;
+    LpConfig *_configDb;
 }
 
 
@@ -63,17 +52,24 @@ static void showVideoView(LinphoneCall* lc, void* user_data);
 -(void) onCallState:(LinphoneCore *)lcptr  callPtr:(LinphoneCall*)callptr callState:(LinphoneCallState)state msg:(const char*)message {
     switch(state) {
         case LinphoneCallIncomingReceived:
-            self.VideoEnabled = _VideoEnabled;
             self.AudioEnabled = _AudioEnabled;
-            linphone_core_accept_call(lcptr,callptr);
+            
+            linphone_call_accept(callptr);
             break;
         case LinphoneCallStreamsRunning:
             [MainVC sipCallStarted];
 
+            
             if (linphone_call_params_video_enabled(linphone_call_get_current_params(callptr))) {
-                linphone_core_set_native_video_window_id(lcptr, (unsigned long)MainVC.videoFrame);
+                linphone_core_set_native_video_window_id(lcptr, (__bridge void *)MainVC.videoFrame);
                 linphone_call_set_next_video_frame_decoded_callback(callptr, showVideoView, NULL);
+            } else {
+                LinphoneCallParams *call_params = linphone_core_create_call_params(lc, callptr);
+                linphone_call_params_enable_video(call_params, YES);
+                linphone_core_update_call(lc, callptr, call_params);
+                linphone_call_params_destroy(call_params);
             }
+            
             break;
         case LinphoneCallError:
         case LinphoneCallEnd:
@@ -128,49 +124,20 @@ static void linphone_iphone_call_state(LinphoneCore *lc, LinphoneCall* call, Lin
     }
 }
 
-static void linphone_logs(OrtpLogLevel lev, const char *fmt, va_list args) {
+void linphone_iphone_log_handler(const char *domain, OrtpLogLevel lev, const char *fmt, va_list args) {
 	NSString* format = [[NSString alloc] initWithCString:fmt encoding:[NSString defaultCStringEncoding]];
 	NSLogv(format,args);
 }
 
-
-static LinphoneCoreVTable linphonec_vtable = {
-	.show =NULL,
-	.call_state_changed =(LinphoneCoreCallStateChangedCb)linphone_iphone_call_state,
-	.registration_state_changed = linphone_iphone_registration_state,
-    .notify_presence_recv=NULL,
-	.new_subscription_request = NULL,
-	.auth_info_requested = NULL,
-	.display_status = NULL,
-	.display_message=NULL,
-	.display_warning=NULL,
-	.display_url=NULL,
-	.text_received=NULL,
-    .message_received=NULL,
-	.dtmf_received=NULL,
-    .transfer_state_changed=NULL
-};
-
 -(void)setAudioEnabled:(BOOL)AudioEnabled {
     _AudioEnabled = AudioEnabled;
     if ( lc ) {
-        linphone_core_mute_mic(lc, !_AudioEnabled);
-    }
-}
-
--(void)setVideoEnabled:(BOOL)VideoEnabled {
-    _VideoEnabled = VideoEnabled;
-    if ( lc ) {
-        linphone_core_enable_video(lc, VideoEnabled, VideoEnabled);
+        linphone_core_enable_mic(lc, _AudioEnabled);
     }
 }
 
 -(BOOL)AudioEnabled {
-    return [self ActiveCall] ? !linphone_core_is_mic_muted(lc) : _AudioEnabled;
-}
-
--(BOOL)VideoEnabled {
-    return [self ActiveCall] ? linphone_call_params_video_enabled(linphone_call_get_current_params(linphone_core_get_current_call(lc))) : _VideoEnabled;
+    return [self ActiveCall] ? linphone_core_mic_enabled(lc) : _AudioEnabled;
 }
 
 -(BOOL)ActiveCall {
@@ -184,86 +151,54 @@ static LinphoneCoreVTable linphonec_vtable = {
     _retryCounter = 5;
 }
 
+- (void)overrideDefaultSettings {
+    NSString *factory = [[NSBundle mainBundle] pathForResource: @"lprc-factory" ofType: nil];
+    NSString *factoryIpad = [[NSBundle mainBundle] pathForResource: @"lprc-factory-ipad" ofType: nil];
+    if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) && [[NSFileManager defaultManager] fileExistsAtPath:factoryIpad]) {
+        factory = factoryIpad;
+    }
+    NSString *confiFileName = [[NSBundle mainBundle] pathForResource: @"lprc" ofType: nil];
+    _configDb = lp_config_new_with_factory([confiFileName UTF8String], [factory UTF8String]);
+}
+
 -(id)init {
     self = [super init];
     if ( self ) {
         _AudioEnabled = NO;
-        _VideoEnabled = NO;
         _RegistrationInProgress = NO;
         [self resetRetryCounter];
-        #ifdef CONSOLE_DEBUG
-        linphone_core_enable_logs_with_cb((OrtpLogFunc)linphone_logs);
-        NSLog(@"Linphone initializing start");
-        #else
-        linphone_core_disable_logs();
-        #endif
-        
-        libmsilbc_init();
-        #if defined (HAVE_SILK)
-        libmssilk_init();
-        #endif
-        #ifdef HAVE_AMR
-        libmsamr_init(); //load amr plugin if present from the liblinphone sdk
-        #endif
-        #ifdef HAVE_X264
-        libmsx264_init(); //load x264 plugin if present from the liblinphone sdk
-        #endif
-        #if HAVE_G729
-        libmsbcg729_init(); // load g729 plugin
-        #endif
 
+        linphone_core_set_log_handler(linphone_iphone_log_handler);
+        //linphone_core_set_log_level(ORTP_DEBUG);
+        NSLog(@"Linphone initializing start");
+        
         lc = nil;
         _iterateTimer = nil;
       
         NSString *sessionCfgFile = [NSTemporaryDirectory() stringByAppendingString:@".lprc_sess"];
         [[NSFileManager defaultManager] removeItemAtPath:sessionCfgFile error: NULL];
         
-        NSString *factoryCfgFile = [[NSBundle mainBundle] pathForResource: @"lprc" ofType: nil];
+        [self overrideDefaultSettings];
+        
+        LinphoneFactory *factory = linphone_factory_get();
+        LinphoneCoreCbs *cbs = linphone_factory_create_core_cbs(factory);
+        linphone_core_cbs_set_call_state_changed(cbs, linphone_iphone_call_state);
+        linphone_core_cbs_set_registration_state_changed(cbs,linphone_iphone_registration_state);
+        linphone_core_cbs_set_user_data(cbs, (__bridge void *)(self));
+        
+        lc = linphone_factory_create_core_with_config(factory, cbs, _configDb);
+        linphone_core_cbs_unref(cbs);
 
-        lc = linphone_core_new (&linphonec_vtable, [sessionCfgFile cStringUsingEncoding:[NSString defaultCStringEncoding]],
-                                ( factoryCfgFile && factoryCfgFile.length ? [factoryCfgFile cStringUsingEncoding:[NSString defaultCStringEncoding]] : NULL ), NULL);
-
-
+        MSFactory *f = linphone_core_get_ms_factory(lc);
+        libmssilk_init(f);
+        libmsamr_init(f);
+        libmsx264_init(f);
+        libmsopenh264_init(f);
+        libmswebrtc_init(f);
+        linphone_core_reload_ms_plugins(lc, NULL);
+        
         [self timerInitialize];
          //Configure Codecs
-         
-         PayloadType *pt;
-         //get codecs from linphonerc
-         const MSList *audioCodecs=linphone_core_get_audio_codecs(lc);
-         const MSList *elem;
-         //disable all codecs
-         for (elem=audioCodecs;elem!=NULL;elem=elem->next){
-         pt=(PayloadType*)elem->data;
-         linphone_core_enable_payload_type(lc,pt,FALSE);
-         }
-         
-     //    [self configurePayloadType:"SILK" fromPrefKey:@"silk_24k_preference" withRate:24000];
-     //    [self configurePayloadType:"speex" fromPrefKey:@"speex_16k_preference" withRate:16000];
-     //    [self configurePayloadType:"speex" fromPrefKey:@"speex_8k_preference" withRate:8000];
-     //    [self configurePayloadType:"SILK" fromPrefKey:@"silk_16k_preference" withRate:16000];
-     //    [self configurePayloadType:"AMR" fromPrefKey:@"amr_8k_preference" withRate:8000];
-         [self configurePayloadType:"GSM" fromPrefKey:@"gsm_8k_preference" withRate:8000];
-     //    [self configurePayloadType:"iLBC" fromPrefKey:@"ilbc_preference" withRate:8000];
-         [self configurePayloadType:"PCMU" fromPrefKey:@"pcmu_preference" withRate:8000];
-         [self configurePayloadType:"PCMA" fromPrefKey:@"pcma_preference" withRate:8000];
-     //    [self configurePayloadType:"G722" fromPrefKey:@"g722_preference" withRate:8000];
-     //    [self configurePayloadType:"G729" fromPrefKey:@"g729_preference" withRate:8000];
-        
-        
-         //get video codecs from linphonerc
-         const MSList *videoCodecs=linphone_core_get_video_codecs(lc);
-         //disable video all codecs
-         for (elem=videoCodecs;elem!=NULL;elem=elem->next){
-            pt=(PayloadType*)elem->data;
-           linphone_core_enable_payload_type(lc,pt,FALSE);
-         }
-        
-        [self configurePayloadType:"H263" fromPrefKey:@"h263_preference" withRate:90000];
-        [self configurePayloadType:"H263-1998" fromPrefKey:@"h263-1998_preference" withRate:9000];
-        [self configurePayloadType:"MP4V-ES" fromPrefKey:@"mp4v-es_preference" withRate:90000];
-
-         //[self configurePayloadType:"VP8" fromPrefKey:@"vp8_preference" withRate:90000];
-
 
          NSString* path = [[NSBundle mainBundle] pathForResource:@"nowebcamCIF" ofType:@"jpg"];
          if (path) {
@@ -272,14 +207,14 @@ static LinphoneCoreVTable linphonec_vtable = {
          }
         
         linphone_core_set_video_device(lc, "StaticImage: Static picture");
-        linphone_core_enable_video(lc, TRUE, TRUE); // Bez transmisji w obu kierunkach pojawiają się problemy z NAT-em i RTP/video
+        linphone_core_enable_video_capture(lc, YES); // Bez transmisji w obu kierunkach pojawiają się problemy z NAT-em i RTP/video
+        linphone_core_enable_video_display(lc, YES);
         
         //linphone_core_set_media_encryption(theLinphoneCore, enableSrtp?LinphoneMediaEncryptionSRTP:LinphoneMediaEncryptionZRTP);
         
-        
-        #ifdef CONSOLE_DEBUG
         NSLog(@"Linphone initializing done");
-        #endif
+        
+
         
     }
     return self;
@@ -295,13 +230,6 @@ static LinphoneCoreVTable linphonec_vtable = {
     };
 }
 
--(void) configurePayloadType:(const char*) type fromPrefKey: (NSString*)key withRate:(int)rate  {
-		PayloadType* pt;
-		if( lc && (pt = linphone_core_find_payload_type(lc,type,rate, -1))) {
-			linphone_core_enable_payload_type(lc,pt, TRUE);
-		}
-}
-
 -(void) iterate {
     if ( lc ) {
         linphone_core_iterate(lc);
@@ -313,7 +241,6 @@ static LinphoneCoreVTable linphonec_vtable = {
     _RegistrationInProgress = NO;
     lastIdent = nil;
     lastHost = nil;
-    self.VideoEnabled = NO;
     self.AudioEnabled = NO;
     [self terminateCall];
     [self unregister];
@@ -345,7 +272,7 @@ static LinphoneCoreVTable linphonec_vtable = {
 	    linphone_core_clear_all_auth_info(lc);
         linphone_core_clear_proxy_config(lc);
         
-        LCSipTransports transportValue;
+        LinphoneSipTransports transportValue;
         linphone_core_get_sip_transports(lc, &transportValue);
 
         if (transportValue.tcp_port == 0) transportValue.tcp_port=transportValue.udp_port + transportValue.tls_port;
@@ -353,9 +280,13 @@ static LinphoneCoreVTable linphonec_vtable = {
         transportValue.tls_port=0;
         linphone_core_set_sip_transports(lc, &transportValue);
         
-        LinphoneProxyConfig* proxy_cfg = linphone_proxy_config_new();
+        LinphoneProxyConfig* proxy_cfg = linphone_core_create_proxy_config(lc);
         
-        linphone_proxy_config_set_identity(proxy_cfg, [[NSString stringWithFormat:@"sip:%@@%@", Ident, Host] cStringUsingEncoding:[NSString defaultCStringEncoding]]);
+        LinphoneAddress *addr = linphone_address_new(NULL);
+        linphone_address_set_username(addr, Ident.UTF8String);
+        linphone_address_set_domain(addr, Host.UTF8String);
+        
+        linphone_proxy_config_set_identity_address(proxy_cfg, addr);
         linphone_proxy_config_set_server_addr(proxy_cfg, [[NSString stringWithFormat:@"sip:%@", Host] cStringUsingEncoding:[NSString defaultCStringEncoding]]);
         linphone_proxy_config_enable_register(proxy_cfg,TRUE);
         linphone_proxy_config_expires(proxy_cfg, DEFAULT_EXPIRES);
@@ -372,16 +303,13 @@ static LinphoneCoreVTable linphonec_vtable = {
 };
 
 -(void) unregister {
-    
-     #ifdef CONSOLE_DEBUG
+
      NSLog(@"unregister");
-     #endif
-    
-    LinphoneProxyConfig* proxy_cfg = NULL;
-    linphone_core_get_default_proxy(lc, &proxy_cfg);
+
+    LinphoneProxyConfig* proxy_cfg = linphone_core_get_default_proxy_config(lc);
     
     if ( proxy_cfg
-        && linphone_proxy_config_is_registered(proxy_cfg) == 1 ) {
+        && linphone_proxy_config_get_state(proxy_cfg) == LinphoneRegistrationOk ) {
         linphone_proxy_config_edit(proxy_cfg);
         linphone_proxy_config_enable_register(proxy_cfg, FALSE);
         linphone_proxy_config_done(proxy_cfg);
@@ -394,15 +322,18 @@ static LinphoneCoreVTable linphonec_vtable = {
 -(int) registered:(NSString*) Ident host:(NSString*)Host {
     
     if ( lc ) {
-        LinphoneProxyConfig* proxy_cfg = NULL;
-        linphone_core_get_default_proxy(lc, &proxy_cfg);
+        
+        LinphoneProxyConfig *proxy_cfg = linphone_core_get_default_proxy_config(lc);
         
         if ( proxy_cfg
-            && linphone_proxy_config_is_registered(proxy_cfg) == 1 )
+            && linphone_proxy_config_get_state(proxy_cfg) == LinphoneRegistrationOk )
         {
             if ( ![Ident isEqualToString:@""] || ![Host isEqualToString:@""] ) {
-                const char *cident = linphone_proxy_config_get_identity(proxy_cfg);
-                const char *chost = linphone_proxy_config_get_addr(proxy_cfg);
+                
+                LinphoneAddress *addr = linphone_proxy_config_get_identity_address(proxy_cfg);
+            
+                const char *cident = linphone_address_get_username(addr);
+                const char *chost = linphone_address_get_domain(addr);
                 
                 if ( strcmp(cident, [[NSString stringWithFormat:@"sip:%@@%@", Ident, Host] cStringUsingEncoding:[NSString defaultCStringEncoding]]) == 0
                     && strcmp(chost, [[NSString stringWithFormat:@"sip:%@", Host] cStringUsingEncoding:[NSString defaultCStringEncoding]]) == 0 )
@@ -417,32 +348,26 @@ static LinphoneCoreVTable linphonec_vtable = {
 };
 
 - (bool)allowSpeaker {
+    if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad))
+        return true;
     
-    bool notallow = false;
-    
-    CFStringRef lNewRoute = CFSTR("Unknown");
-    UInt32 lNewRouteSize = sizeof(lNewRoute);
-    OSStatus lStatus = AudioSessionGetProperty(kAudioSessionProperty_AudioRoute, &lNewRouteSize, &lNewRoute);
-    if (!lStatus && lNewRouteSize > 0) {
-        NSString *route = (__bridge NSString *) lNewRoute;
-        notallow = [route isEqualToString: @"Headset"] ||
-        [route isEqualToString: @"Headphone"] ||
-        [route isEqualToString: @"HeadphonesAndMicrophone"] ||
-        [route isEqualToString: @"HeadsetInOut"] ||
-        [route isEqualToString: @"Lineout"];
-        CFRelease(lNewRoute);
+    bool allow = true;
+    AVAudioSessionRouteDescription *newRoute = [AVAudioSession sharedInstance].currentRoute;
+    if (newRoute) {
+        NSString *route = newRoute.outputs[0].portType;
+        allow = !([route isEqualToString:AVAudioSessionPortLineOut] ||
+                  [route isEqualToString:AVAudioSessionPortHeadphones] ||
+                  [@[ AVAudioSessionPortBluetoothA2DP, AVAudioSessionPortBluetoothLE, AVAudioSessionPortBluetoothHFP ] containsObject:route]);
     }
-    
-    return !notallow;
+    return allow;
 }
 
 - (void) speakerOn {
     
     if ( [self allowSpeaker] ) {
-        UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-        AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute
-                                 , sizeof (audioRouteOverride)
-                                 , &audioRouteOverride);
+        NSError *err = nil;
+        [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&err];
+        [[UIDevice currentDevice] setProximityMonitoringEnabled:FALSE];
 
     } else {
         NSLog(@"Speaker not allowed");
@@ -462,9 +387,7 @@ static LinphoneCoreVTable linphonec_vtable = {
 
 -(void) terminateCall {
     
-    #ifdef CONSOLE_DEBUG
     NSLog(@"terminate call");
-    #endif
     
     if ( lc ) {
         linphone_core_terminate_all_calls(lc);
