@@ -99,6 +99,8 @@
 		408CE8AB1F9F55C400620825 /* msamr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8941F9F55C400620825 /* msamr.framework */; };
 		408CE8AC1F9F55C400620825 /* msamr.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8941F9F55C400620825 /* msamr.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		408CE8C91F9F652200620825 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8C31F9F597A00620825 /* AVFoundation.framework */; };
+		40946E1B1FC45D0300137030 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40946E1A1FC45D0300137030 /* Images.xcassets */; };
+		40946E1F1FC46AAF00137030 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40946E1E1FC46AAF00137030 /* Launch Screen.storyboard */; };
 		409C0EAA1618B9C600596412 /* gate512x512_g.png in Resources */ = {isa = PBXBuildFile; fileRef = 409C0EA61618B9C600596412 /* gate512x512_g.png */; };
 		409C0EAB1618B9C600596412 /* gate512x512_w.png in Resources */ = {isa = PBXBuildFile; fileRef = 409C0EA71618B9C600596412 /* gate512x512_w.png */; };
 		409C0EAC1618B9C600596412 /* gateway512x512_g.png in Resources */ = {isa = PBXBuildFile; fileRef = 409C0EA81618B9C600596412 /* gateway512x512_g.png */; };
@@ -255,6 +257,8 @@
 		408CE8C61F9F597A00620825 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		408CE8C71F9F597B00620825 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		408CE8C81F9F5A2B00620825 /* DOMOPHONE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DOMOPHONE.entitlements; sourceTree = "<group>"; };
+		40946E1A1FC45D0300137030 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		40946E1E1FC46AAF00137030 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		409C0EA61618B9C600596412 /* gate512x512_g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gate512x512_g.png; sourceTree = "<group>"; };
 		409C0EA71618B9C600596412 /* gate512x512_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gate512x512_w.png; sourceTree = "<group>"; };
 		409C0EA81618B9C600596412 /* gateway512x512_g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gateway512x512_g.png; sourceTree = "<group>"; };
@@ -390,6 +394,7 @@
 		40732DD2160C51CF00E69FF4 = {
 			isa = PBXGroup;
 			children = (
+				40946E1A1FC45D0300137030 /* Images.xcassets */,
 				408CE8C81F9F5A2B00620825 /* DOMOPHONE.entitlements */,
 				40C5288618008B9A005E342E /* AppIcon120x120.png */,
 				40C5288218008B6A005E342E /* AppIcon76x76.png */,
@@ -475,6 +480,7 @@
 				40C3D6A6161CA3FB00344C9D /* ACLinphone.h */,
 				40C3D6A7161CA3FB00344C9D /* ACLinphone.m */,
 				403A2E6617F0B5710060B12B /* ACViewController_iPad.xib */,
+				40946E1E1FC46AAF00137030 /* Launch Screen.storyboard */,
 			);
 			path = DOMOPHONE4iOS;
 			sourceTree = "<group>";
@@ -543,7 +549,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -619,6 +625,8 @@
 				401FDB751632C57800730602 /* video_r.png in Resources */,
 				40119DF5176F0D30001FC28B /* AppIcon57x57.png in Resources */,
 				40119DF6176F0D38001FC28B /* AppIcon114x114.png in Resources */,
+				40946E1F1FC46AAF00137030 /* Launch Screen.storyboard in Resources */,
+				40946E1B1FC45D0300137030 /* Images.xcassets in Resources */,
 				404B416417E305C300DBC35C /* ring1.mp3 in Resources */,
 				406380CF17F07358008A5D97 /* ring2.mp3 in Resources */,
 				406380D017F07358008A5D97 /* ring3.mp3 in Resources */,
@@ -833,7 +841,13 @@
 		40732E02160C51CF00E69FF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7,
+				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = DOMOPHONE.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_RESOURCE_RULES_PATH[sdk=*]" = "";
@@ -867,7 +881,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = arm64;
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -875,6 +889,13 @@
 		40732E03160C51CF00E69FF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7,
+				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = DOMOPHONE.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: AC SOFTWARE SP. Z O.O. (T6ZPGSWA75)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -905,7 +926,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = arm64;
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
