@@ -73,6 +73,7 @@ ACViewController *MainVC = nil;
     NSTimer *_sipTimeoutTimer1;
     NSDate *_lastAudioVideoTouch;
     NSDate *_lastSysState;
+    NSTimer *_enableButtonsTimer1;
     
     AVAudioPlayer* audioPlayer;
 }
@@ -1087,6 +1088,8 @@ ACViewController *MainVC = nil;
 
 }
 
+
+
 -(void)setMicrophoneGain {
     
     NSNumber *n = [[NSUserDefaults standardUserDefaults] valueForKey:@"pref_mic_gain"];
@@ -1095,8 +1098,21 @@ ACViewController *MainVC = nil;
     
 }
 
+-(void)enabledButtons:(NSTimer*)timer {
+    self.btnVideo.enabled = YES;
+    self.btnAudio.enabled = YES;
+}
+
 - (IBAction)audioVideoTouch:(id)sender {
     
+    self.btnVideo.enabled = NO;
+    self.btnAudio.enabled = NO;
+    
+    if ( _enableButtonsTimer1 ) {
+        [_enableButtonsTimer1 invalidate];
+    }
+    
+    _enableButtonsTimer1 = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(enabledButtons:) userInfo:sender repeats:NO];
     
     float Diff = 4;
     
@@ -1111,7 +1127,7 @@ ACViewController *MainVC = nil;
             &&  Linphone.AudioEnabled == NO )) {
             
         if ( _Connection ) {
-            
+            // NSLog(@"audioVideoTouch:_Connection");
             BOOL ActiveCall = Linphone && [Linphone ActiveCall];
             
             [self setConnectedStatusWithActInd:!ActiveCall];
@@ -1141,7 +1157,7 @@ ACViewController *MainVC = nil;
             _startVideoTimer1 = [NSTimer scheduledTimerWithTimeInterval:Diff target:self selector:@selector(startAudioVideoConnection:) userInfo:sender repeats:NO];
         }
     } else {
-        NSLog(@"audioVideoTouch:sipDisconnect");
+        //NSLog(@"audioVideoTouch:sipDisconnect");
         [self sipDisconnect];
     }
     

@@ -37,7 +37,16 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     #if !TARGET_IPHONE_SIMULATOR
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
+    
     #endif
     return YES;
 }
@@ -62,24 +71,6 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
     [MainVC sipDisconnect];
-    
-    NSNumber *bg = [[NSUserDefaults standardUserDefaults] valueForKey:@"pref_bg"];
-    
-    if ( bg == NULL || [bg boolValue] == YES ) {
-        
-        BgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler: ^{
-            NSLog(@"bgTimeOut");
-        }];
-        
-        [[UIApplication sharedApplication] setKeepAliveTimeout:600
-                                                       handler:^{
-                                                           
-                                                           [self connectionCheck];
-                                                           
-                                                       }];
-    }
-    
-
     
 }
 
