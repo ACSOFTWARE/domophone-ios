@@ -39,7 +39,7 @@
 
 #define ACDEVSTATUS_GATEISCLOSED          0x1
 #define ACDEVSTATUS_GATEWAYISCLOSED       0x2
-#define ACDEVSTATUS_CLOUD_CONNECTED       0x3
+#define ACDEVSTATUS_CLOUD_CONNECTED       0x4
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -941,15 +941,17 @@ ACViewController *MainVC = nil;
     if ( hide == NO ) {
         if ( self.btnOpen.tag != type ) {
             switch(type) {
-                case ACBUTTONTYPE_GATE:
-                    [self.btnOpen setImage:[UIImage imageNamed:@"gate512x512_g.png"] forState:UIControlStateNormal];
-                    [self.btnOpen setImage:[UIImage imageNamed:@"gate512x512_hl.png"] forState:UIControlStateHighlighted];
-                    [self.btnOpen setImage:[UIImage imageNamed:@"gate512x512_hl.png"] forState:UIControlStateDisabled];
+                case ACBUTTONTYPE_GATE: {
+                    [self.btnOpen setImage:[UIImage imageNamed:@"gate%@512x512_g.png"] forState:UIControlStateNormal];
+                    [self.btnOpen setImage:[UIImage imageNamed:@"gate%@512x512_hl.png"] forState:UIControlStateHighlighted];
+                    [self.btnOpen setImage:[UIImage imageNamed:@"gate%@512x512_hl.png"] forState:UIControlStateDisabled];
+                }
                     break;
-                case ACBUTTONTYPE_GATEWAY:
-                    [self.btnOpen setImage:[UIImage imageNamed:@"gateway512x512_g.png"] forState:UIControlStateNormal];
-                    [self.btnOpen setImage:[UIImage imageNamed:@"gateway512x512_hl.png"] forState:UIControlStateHighlighted];
-                    [self.btnOpen setImage:[UIImage imageNamed:@"gateway512x512_hl.png"] forState:UIControlStateDisabled];
+                case ACBUTTONTYPE_GATEWAY: {
+                    [self.btnOpen setImage:[UIImage imageNamed:@"gateway%@512x512_g.png"] forState:UIControlStateNormal];
+                    [self.btnOpen setImage:[UIImage imageNamed:@"gateway%@512x512_hl.png"] forState:UIControlStateHighlighted];
+                    [self.btnOpen setImage:[UIImage imageNamed:@"gateway%@512x512_hl.png"] forState:UIControlStateDisabled];
+                }
                     break;
             }
             self.btnOpen.tag = type;
