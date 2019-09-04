@@ -471,10 +471,12 @@ ACViewController *MainVC = nil;
     }
     
     if ( status & SYS_STATE_GATEISCLOSED ) {
+        // TODO: Change gate icon
         _Status |= ACDEVSTATUS_GATEISCLOSED;
     }
     
     if ( status & SYS_STATE_GATEWAYISCLOSED ) {
+        // TODO: Change gateway icon
         _Status |= ACDEVSTATUS_GATEWAYISCLOSED;
     }
     
