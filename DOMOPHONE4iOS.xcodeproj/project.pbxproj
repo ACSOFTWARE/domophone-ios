@@ -560,6 +560,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				pl,
 				fr,
@@ -683,7 +684,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/Users/AC/Devel/projekty/iOS/domophone-ios/_FilterScriptPhase.sh";
+			shellScript = "
+";
 		};
 /* End PBXShellScriptBuildPhase section */
 
