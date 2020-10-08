@@ -24,6 +24,8 @@ username_length=-1
 [net]
 download_bw=0
 upload_bw=0
+firewall_policy=ice
+stun_server=stun.linphone.org
 
 [sip]
 sip_random_port=0

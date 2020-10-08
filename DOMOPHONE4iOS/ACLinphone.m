@@ -15,8 +15,8 @@
 
 #import "ACLinphone.h"
 #import "ACViewController.h"
-#include "mediastreamer2/mscommon.h"
-#include "linphone/linphonecore.h"
+#include <mediastreamer2/mscommon.h>
+#include <linphone/linphonecore.h>
 
 #define DEFAULT_EXPIRES 600
 
@@ -169,7 +169,7 @@ void linphone_iphone_log_handler(const char *domain, OrtpLogLevel lev, const cha
         [self resetRetryCounter];
 
         linphone_core_set_log_handler(linphone_iphone_log_handler);
-        //linphone_core_set_log_level(ORTP_DEBUG);
+        linphone_core_set_log_level(ORTP_DEBUG);
         NSLog(@"Linphone initializing start");
         
         lc = nil;

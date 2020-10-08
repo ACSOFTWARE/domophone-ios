@@ -1,0 +1,18 @@
+PODS:
+  - linphone-sdk (4.3):
+    - linphone-sdk/basic-frameworks (= 4.3)
+  - linphone-sdk/basic-frameworks (4.3)
+
+DEPENDENCIES:
+  - linphone-sdk (= 4.3)
+
+SPEC REPOS:
+  https://gitlab.linphone.org/BC/public/podspec.git:
+    - linphone-sdk
+
+SPEC CHECKSUMS:
+  linphone-sdk: fb9f865b951a01516c19342e6cccd77e640bd022
+
+PODFILE CHECKSUM: 7527bef5f4bd19c1a8e8ee2a893c4cfde6d3c5bd
+
+COCOAPODS: 1.8.4

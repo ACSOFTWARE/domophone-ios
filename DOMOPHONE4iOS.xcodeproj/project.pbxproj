@@ -74,30 +74,6 @@
 		40734B981614A81100EB8DAB /* gateway_g.png in Resources */ = {isa = PBXBuildFile; fileRef = 40734B8E1614A81100EB8DAB /* gateway_g.png */; };
 		40734B9B1614A81100EB8DAB /* mic_g.png in Resources */ = {isa = PBXBuildFile; fileRef = 40734B911614A81100EB8DAB /* mic_g.png */; };
 		4088A9EB1844CBFB00CC7C78 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4088A9EA1844CBFB00CC7C78 /* Settings.bundle */; };
-		408CE8951F9F55C400620825 /* linphonetester.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8891F9F55C000620825 /* linphonetester.framework */; };
-		408CE8961F9F55C400620825 /* linphonetester.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8891F9F55C000620825 /* linphonetester.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		408CE8971F9F55C400620825 /* msx264.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE88A1F9F55C100620825 /* msx264.framework */; };
-		408CE8981F9F55C400620825 /* msx264.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE88A1F9F55C100620825 /* msx264.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		408CE8991F9F55C400620825 /* ortp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE88B1F9F55C100620825 /* ortp.framework */; };
-		408CE89A1F9F55C400620825 /* ortp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE88B1F9F55C100620825 /* ortp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		408CE89B1F9F55C400620825 /* mssilk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE88C1F9F55C100620825 /* mssilk.framework */; };
-		408CE89C1F9F55C400620825 /* mssilk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE88C1F9F55C100620825 /* mssilk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		408CE89D1F9F55C400620825 /* msopenh264.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE88D1F9F55C100620825 /* msopenh264.framework */; };
-		408CE89E1F9F55C400620825 /* msopenh264.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE88D1F9F55C100620825 /* msopenh264.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		408CE89F1F9F55C400620825 /* mediastreamer_base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE88E1F9F55C200620825 /* mediastreamer_base.framework */; };
-		408CE8A01F9F55C400620825 /* mediastreamer_base.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE88E1F9F55C200620825 /* mediastreamer_base.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		408CE8A11F9F55C400620825 /* linphone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE88F1F9F55C200620825 /* linphone.framework */; };
-		408CE8A21F9F55C400620825 /* linphone.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE88F1F9F55C200620825 /* linphone.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		408CE8A31F9F55C400620825 /* bctoolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8901F9F55C200620825 /* bctoolbox.framework */; };
-		408CE8A41F9F55C400620825 /* bctoolbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8901F9F55C200620825 /* bctoolbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		408CE8A51F9F55C400620825 /* mscodec2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8911F9F55C300620825 /* mscodec2.framework */; };
-		408CE8A61F9F55C400620825 /* mscodec2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8911F9F55C300620825 /* mscodec2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		408CE8A71F9F55C400620825 /* mswebrtc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8921F9F55C300620825 /* mswebrtc.framework */; };
-		408CE8A81F9F55C400620825 /* mswebrtc.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8921F9F55C300620825 /* mswebrtc.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		408CE8A91F9F55C400620825 /* mediastreamer_voip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8931F9F55C300620825 /* mediastreamer_voip.framework */; };
-		408CE8AA1F9F55C400620825 /* mediastreamer_voip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8931F9F55C300620825 /* mediastreamer_voip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		408CE8AB1F9F55C400620825 /* msamr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8941F9F55C400620825 /* msamr.framework */; };
-		408CE8AC1F9F55C400620825 /* msamr.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8941F9F55C400620825 /* msamr.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		408CE8C91F9F652200620825 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408CE8C31F9F597A00620825 /* AVFoundation.framework */; };
 		40946E1B1FC45D0300137030 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40946E1A1FC45D0300137030 /* Images.xcassets */; };
 		40946E1F1FC46AAF00137030 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40946E1E1FC46AAF00137030 /* Launch Screen.storyboard */; };
@@ -120,6 +96,7 @@
 		40D9DCE717F96AE100CA2B5F /* shadow_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D9DCE617F96AE100CA2B5F /* shadow_ipad.png */; };
 		40E5F6A51FAB398D00359839 /* lprc-factory-ipad in Resources */ = {isa = PBXBuildFile; fileRef = 40E5F6A31FAB398C00359839 /* lprc-factory-ipad */; };
 		40E5F6A61FAB398D00359839 /* lprc-factory in Resources */ = {isa = PBXBuildFile; fileRef = 40E5F6A41FAB398D00359839 /* lprc-factory */; };
+		CE5E71BCE509D211C4BE9C16 /* Pods_DOMOPHONE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C955446E2D44D7E52262A2D5 /* Pods_DOMOPHONE.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -129,18 +106,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				408CE8A21F9F55C400620825 /* linphone.framework in Embed Frameworks */,
-				408CE8A81F9F55C400620825 /* mswebrtc.framework in Embed Frameworks */,
-				408CE8AA1F9F55C400620825 /* mediastreamer_voip.framework in Embed Frameworks */,
-				408CE8A61F9F55C400620825 /* mscodec2.framework in Embed Frameworks */,
-				408CE8981F9F55C400620825 /* msx264.framework in Embed Frameworks */,
-				408CE8961F9F55C400620825 /* linphonetester.framework in Embed Frameworks */,
-				408CE8A41F9F55C400620825 /* bctoolbox.framework in Embed Frameworks */,
-				408CE89A1F9F55C400620825 /* ortp.framework in Embed Frameworks */,
-				408CE89E1F9F55C400620825 /* msopenh264.framework in Embed Frameworks */,
-				408CE89C1F9F55C400620825 /* mssilk.framework in Embed Frameworks */,
-				408CE8A01F9F55C400620825 /* mediastreamer_base.framework in Embed Frameworks */,
-				408CE8AC1F9F55C400620825 /* msamr.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,6 +113,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01D7CF21252F247600F4781D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ACViewController.xib; sourceTree = "<group>"; };
 		40050DD817F4543D00EF3C89 /* gate_g_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gate_g_ipad.png; sourceTree = "<group>"; };
 		40050DD917F4543D00EF3C89 /* gateway_g_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gateway_g_ipad.png; sourceTree = "<group>"; };
 		40050DDA17F4543D00EF3C89 /* mic_g_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_g_ipad.png; sourceTree = "<group>"; };
@@ -210,7 +176,6 @@
 		40732DF7160C51CF00E69FF4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		40732DF9160C51CF00E69FF4 /* ACViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACViewController.h; sourceTree = "<group>"; };
 		40732DFA160C51CF00E69FF4 /* ACViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACViewController.m; sourceTree = "<group>"; };
-		40732DFD160C51CF00E69FF4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ACViewController.xib; sourceTree = "<group>"; };
 		40732E04160C530D00E69FF4 /* ACDomophoneConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDomophoneConnection.h; sourceTree = "<group>"; };
 		40732E05160C530D00E69FF4 /* ACDomophoneConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDomophoneConnection.m; sourceTree = "<group>"; };
 		40732E08160C534300E69FF4 /* dconnection.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dconnection.c; sourceTree = "<group>"; };
@@ -224,18 +189,6 @@
 		40734B8E1614A81100EB8DAB /* gateway_g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gateway_g.png; sourceTree = "<group>"; };
 		40734B911614A81100EB8DAB /* mic_g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_g.png; sourceTree = "<group>"; };
 		4088A9EA1844CBFB00CC7C78 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		408CE8891F9F55C000620825 /* linphonetester.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = linphonetester.framework; path = "DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks/linphonetester.framework"; sourceTree = "<group>"; };
-		408CE88A1F9F55C100620825 /* msx264.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = msx264.framework; path = "DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks/msx264.framework"; sourceTree = "<group>"; };
-		408CE88B1F9F55C100620825 /* ortp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ortp.framework; path = "DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks/ortp.framework"; sourceTree = "<group>"; };
-		408CE88C1F9F55C100620825 /* mssilk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mssilk.framework; path = "DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks/mssilk.framework"; sourceTree = "<group>"; };
-		408CE88D1F9F55C100620825 /* msopenh264.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = msopenh264.framework; path = "DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks/msopenh264.framework"; sourceTree = "<group>"; };
-		408CE88E1F9F55C200620825 /* mediastreamer_base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mediastreamer_base.framework; path = "DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks/mediastreamer_base.framework"; sourceTree = "<group>"; };
-		408CE88F1F9F55C200620825 /* linphone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = linphone.framework; path = "DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks/linphone.framework"; sourceTree = "<group>"; };
-		408CE8901F9F55C200620825 /* bctoolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = bctoolbox.framework; path = "DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks/bctoolbox.framework"; sourceTree = "<group>"; };
-		408CE8911F9F55C300620825 /* mscodec2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mscodec2.framework; path = "DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks/mscodec2.framework"; sourceTree = "<group>"; };
-		408CE8921F9F55C300620825 /* mswebrtc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mswebrtc.framework; path = "DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks/mswebrtc.framework"; sourceTree = "<group>"; };
-		408CE8931F9F55C300620825 /* mediastreamer_voip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mediastreamer_voip.framework; path = "DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks/mediastreamer_voip.framework"; sourceTree = "<group>"; };
-		408CE8941F9F55C400620825 /* msamr.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = msamr.framework; path = "DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks/msamr.framework"; sourceTree = "<group>"; };
 		408CE8B41F9F594900620825 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreTelephony.framework; sourceTree = "<group>"; };
 		408CE8B51F9F594900620825 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenGLES.framework; sourceTree = "<group>"; };
 		408CE8B61F9F594900620825 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreVideo.framework; sourceTree = "<group>"; };
@@ -290,6 +243,9 @@
 		40D9DCE617F96AE100CA2B5F /* shadow_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_ipad.png; sourceTree = "<group>"; };
 		40E5F6A31FAB398C00359839 /* lprc-factory-ipad */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "lprc-factory-ipad"; sourceTree = "<group>"; };
 		40E5F6A41FAB398D00359839 /* lprc-factory */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "lprc-factory"; sourceTree = "<group>"; };
+		A88E216ADD105947F1A19C98 /* Pods-DOMOPHONE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOMOPHONE.release.xcconfig"; path = "Target Support Files/Pods-DOMOPHONE/Pods-DOMOPHONE.release.xcconfig"; sourceTree = "<group>"; };
+		C955446E2D44D7E52262A2D5 /* Pods_DOMOPHONE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DOMOPHONE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC40DEA12F97954C280964BB /* Pods-DOMOPHONE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOMOPHONE.debug.xcconfig"; path = "Target Support Files/Pods-DOMOPHONE/Pods-DOMOPHONE.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,27 +254,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				408CE8C91F9F652200620825 /* AVFoundation.framework in Frameworks */,
-				408CE89D1F9F55C400620825 /* msopenh264.framework in Frameworks */,
-				408CE8951F9F55C400620825 /* linphonetester.framework in Frameworks */,
-				408CE8A91F9F55C400620825 /* mediastreamer_voip.framework in Frameworks */,
-				408CE8A11F9F55C400620825 /* linphone.framework in Frameworks */,
-				408CE89F1F9F55C400620825 /* mediastreamer_base.framework in Frameworks */,
-				408CE8AB1F9F55C400620825 /* msamr.framework in Frameworks */,
-				408CE8991F9F55C400620825 /* ortp.framework in Frameworks */,
-				408CE8971F9F55C400620825 /* msx264.framework in Frameworks */,
 				40732DE2160C51CF00E69FF4 /* UIKit.framework in Frameworks */,
-				408CE8A51F9F55C400620825 /* mscodec2.framework in Frameworks */,
-				408CE8A71F9F55C400620825 /* mswebrtc.framework in Frameworks */,
 				40732DE4160C51CF00E69FF4 /* Foundation.framework in Frameworks */,
 				40732DE6160C51CF00E69FF4 /* CoreGraphics.framework in Frameworks */,
-				408CE89B1F9F55C400620825 /* mssilk.framework in Frameworks */,
-				408CE8A31F9F55C400620825 /* bctoolbox.framework in Frameworks */,
+				CE5E71BCE509D211C4BE9C16 /* Pods_DOMOPHONE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12424EEC109B5A08C37CECF4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EC40DEA12F97954C280964BB /* Pods-DOMOPHONE.debug.xcconfig */,
+				A88E216ADD105947F1A19C98 /* Pods-DOMOPHONE.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		40050DC317F44E2200EF3C89 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +365,7 @@
 				40732DE7160C51CF00E69FF4 /* DOMOPHONE4iOS */,
 				40732DE0160C51CF00E69FF4 /* Frameworks */,
 				40732DDE160C51CF00E69FF4 /* Products */,
+				12424EEC109B5A08C37CECF4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -435,18 +390,6 @@
 				408CE8C41F9F597A00620825 /* AudioUnit.framework */,
 				408CE8C51F9F597A00620825 /* CoreAudio.framework */,
 				408CE8C71F9F597B00620825 /* CFNetwork.framework */,
-				408CE8901F9F55C200620825 /* bctoolbox.framework */,
-				408CE88F1F9F55C200620825 /* linphone.framework */,
-				408CE8891F9F55C000620825 /* linphonetester.framework */,
-				408CE88E1F9F55C200620825 /* mediastreamer_base.framework */,
-				408CE8931F9F55C300620825 /* mediastreamer_voip.framework */,
-				408CE8941F9F55C400620825 /* msamr.framework */,
-				408CE8911F9F55C300620825 /* mscodec2.framework */,
-				408CE88D1F9F55C100620825 /* msopenh264.framework */,
-				408CE88C1F9F55C100620825 /* mssilk.framework */,
-				408CE8921F9F55C300620825 /* mswebrtc.framework */,
-				408CE88A1F9F55C100620825 /* msx264.framework */,
-				408CE88B1F9F55C100620825 /* ortp.framework */,
 				408CE8B41F9F594900620825 /* CoreTelephony.framework */,
 				408CE8B61F9F594900620825 /* CoreVideo.framework */,
 				408CE8B91F9F594B00620825 /* AVFoundation.framework */,
@@ -460,6 +403,7 @@
 				40732DE1160C51CF00E69FF4 /* UIKit.framework */,
 				40732DE3160C51CF00E69FF4 /* Foundation.framework */,
 				40732DE5160C51CF00E69FF4 /* CoreGraphics.framework */,
+				C955446E2D44D7E52262A2D5 /* Pods_DOMOPHONE.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -519,11 +463,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40732E01160C51CF00E69FF4 /* Build configuration list for PBXNativeTarget "DOMOPHONE" */;
 			buildPhases = (
+				C083E75EEC4472FAF8B59F25 /* [CP] Check Pods Manifest.lock */,
 				40732DD9160C51CF00E69FF4 /* Sources */,
 				40732DDA160C51CF00E69FF4 /* Frameworks */,
 				40732DDB160C51CF00E69FF4 /* Resources */,
 				408CE8AD1F9F55C400620825 /* Embed Frameworks */,
 				40946E131FC44D7B00137030 /* ShellScript */,
+				446396F73358EC8FEB686E1A /* [CP] Embed Pods Frameworks */,
+				1805646E055FD7289B514CC2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -541,7 +488,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AC;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Przemysław Zygmunt";
 				TargetAttributes = {
 					40732DDC160C51CF00E69FF4 = {
@@ -557,10 +504,9 @@
 			};
 			buildConfigurationList = 40732DD7160C51CF00E69FF4 /* Build configuration list for PBXProject "DOMOPHONE4iOS" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				pl,
 				fr,
@@ -573,6 +519,7 @@
 				de,
 				cs,
 				sk,
+				Base,
 			);
 			mainGroup = 40732DD2160C51CF00E69FF4;
 			productRefGroup = 40732DDE160C51CF00E69FF4 /* Products */;
@@ -673,6 +620,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1805646E055FD7289B514CC2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DOMOPHONE/Pods-DOMOPHONE-resources.sh",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Resources/liblinphone_tester",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/liblinphone_tester",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DOMOPHONE/Pods-DOMOPHONE-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		40946E131FC44D7B00137030 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -686,6 +651,80 @@
 			shellPath = /bin/sh;
 			shellScript = "
 ";
+		};
+		446396F73358EC8FEB686E1A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DOMOPHONE/Pods-DOMOPHONE-frameworks.sh",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/bctoolbox-tester.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/bctoolbox.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/belcard.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/belle-sip.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/belr.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/lime.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/limetester.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/linphone.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/linphonesw.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/linphonetester.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/mediastreamer2.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/msamr.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/mscodec2.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/msopenh264.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/mssilk.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/mswebrtc.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/msx264.framework",
+				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/ortp.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-tester.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belcard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belle-sip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belr.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/lime.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/limetester.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphone.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonesw.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonetester.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mediastreamer2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/msamr.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mscodec2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/msopenh264.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mssilk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mswebrtc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/msx264.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ortp.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DOMOPHONE/Pods-DOMOPHONE-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C083E75EEC4472FAF8B59F25 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DOMOPHONE-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -718,7 +757,7 @@
 		40732DFC160C51CF00E69FF4 /* ACViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				40732DFD160C51CF00E69FF4 /* en */,
+				01D7CF21252F247600F4781D /* Base */,
 			);
 			name = ACViewController.xib;
 			sourceTree = "<group>";
@@ -757,12 +796,15 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -788,7 +830,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -807,12 +849,15 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -831,7 +876,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -842,11 +887,8 @@
 		};
 		40732E02160C51CF00E69FF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC40DEA12F97954C280964BB /* Pods-DOMOPHONE.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7,
-				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DOMOPHONE.entitlements;
@@ -856,11 +898,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/DOMOPHONE4iOS/liblinphone/x86_64-apple-darwin.ios/lib",
-					"$(PROJECT_DIR)/DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks",
-					"$(PROJECT_DIR)/DOMOPHONE4iOS/liblinphone/x86_64-apple-darwin.ios/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMOPHONE4iOS/DOMOPHONE4iOS-Prefix.pch";
@@ -875,7 +913,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/DOMOPHONE4iOS/liblinphone/apple-darwin/include";
 				INFOPLIST_FILE = "DOMOPHONE4iOS/DOMOPHONE4iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.domophone;
@@ -890,11 +928,8 @@
 		};
 		40732E03160C51CF00E69FF4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A88E216ADD105947F1A19C98 /* Pods-DOMOPHONE.release.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7,
-				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DOMOPHONE.entitlements;
@@ -903,11 +938,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/DOMOPHONE4iOS/liblinphone/x86_64-apple-darwin.ios/lib",
-					"$(PROJECT_DIR)/DOMOPHONE4iOS/liblinphone/apple-darwin/Frameworks",
-					"$(PROJECT_DIR)/DOMOPHONE4iOS/liblinphone/x86_64-apple-darwin.ios/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMOPHONE4iOS/DOMOPHONE4iOS-Prefix.pch";
@@ -920,7 +951,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/DOMOPHONE4iOS/liblinphone/apple-darwin/include";
 				INFOPLIST_FILE = "DOMOPHONE4iOS/DOMOPHONE4iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.domophone;
